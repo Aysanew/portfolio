@@ -1,0 +1,287 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-family: Courier New;
+  font-size: 3.75rem;
+  text-shadow: 1px 2px 8px black;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+address {
+  font-size: 12px;
+  width: 100%
+  margin: auto 0;
+  display: block;
+}
+
+footer {
+  text-align: center;
+}
+
+/* ID Selectors */
+
+#header-content {
+  background-color: rgb(96, 94, 94);
+  min-height: 50px;
+  font-size: 1.25rem;
+  font-family: 'Titillium Web';
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  border-bottom-style: inset;
+  border-bottom-color: rgb(204, 204, 204);
+}
+
+#Contact-menu {
+  border-right-style: none;
+}
+
+#main-content {
+  border-bottom-style: inset;
+  border-bottom-color: rgb(204, 204, 204);
+  background: linear-gradient(rgba(249, 98, 98, 0.5) 0%, rgba(249, 196, 106, 0.5) 40%, rgba(122, 249, 114, 0.5) 75% );
+  height: 2750px;
+  margin: 0 auto;
+}
+
+#Title {
+  height: 25%;
+  width: 100%;
+  padding: 35px;
+}
+
+#Projects {
+  height: 40%;
+  width: 100%;
+  padding: 35px 10px;
+}
+
+#Resume {
+  height: 35%;
+  width: 100%;
+  padding: 35px 0px;
+  overflow: auto;
+}
+
+#footer-content {
+  width: 100%
+  height: auto;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: rgb(96, 94, 94);
+  color: white;
+}
+
+
+
+
+
+/* Class Selectors */
+
+/* Header Bar Stuff */
+
+.navbar {
+  padding: 0px;
+  min-height: 50x;
+}
+
+
+.navbar div {
+  min-height: 50px;
+}
+
+.navbar ul {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.navbar li {
+  display: inline;
+  width: 25%;
+  border-right-style: solid;
+  border-right-width: thick;
+  color: rgb(164, 51, 58);
+}
+
+.navbar-collapse.collapsing ul {
+  align-items: flex-end;
+}
+.navbar-collapse.show ul {
+  align-items: flex-end;
+}
+
+.navbar a:link {
+  color: white;
+}
+
+.navbar a:visited {
+  color: white;
+}
+
+.button-container {
+  width: 50px;
+  height: 50px;
+}
+
+.button-image {
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+/* Title Section */
+
+
+
+.Title {
+  color: white;
+  text-align: center;
+}
+
+
+
+
+/* Project Section */
+
+
+.Projects {
+  text-align: center;
+  color: white;
+  height: 70px;
+}
+
+.project-area {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+.pros {
+  /* display: grid; */
+  height: 25%;
+  margin-bottom: 1em;
+}
+
+.pros div:hover {
+  box-shadow: 0px 7px 20px 0px black;
+}
+
+.pros div {
+  border-color: rgb(255, 255, 255, 0.7);
+  border-style: solid;
+  border-top-style: none;
+  border-bottom-style: none;
+  border-width: .3rem;
+  border-radius: 1em;
+  margin: .5rem 1rem;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 100%;
+}
+
+.pros a {
+  display: none;
+  height: 100%;
+  width: 100%;
+  padding: 6.5em 2em;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  border-radius: 1em;
+}
+
+.pros div a:link {
+  text-decoration: none;
+  color: white;
+}
+
+.pros div:hover > a {
+  display: inline-block;
+}
+
+.pro1 {
+  background-image: url(../images/Rock_Paper_Scissors_GamePicture.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.pro2 {
+  background-image: url(../images/Calculator_Screenshot.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+
+
+
+
+.pro2 {
+  height: 100%;
+}
+
+
+
+
+
+/* Resume Section */
+
+
+
+.Resume {
+  text-align: center;
+  color: white;
+}
+
+.clearfix {
+  width: 40%;
+  height: 80%;
+  min-width: 440px;
+  margin: 35px auto;
+  border-style: groove;
+  border-color: rgb(194, 129, 189);
+}
+
+.clearfix embed {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+/* Media Queries */
+
+@media (max-width: 1338px) {
+
+  .clearfix {
+    width: 50%;
+  }
+}
+
+
+@media (max-width: 1024px) {
+
+  .pros div a {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+}
+
+@media (max-width: 422px) {
+
+  h1 {
+    font-size: 3.15rem;
+  }
+}

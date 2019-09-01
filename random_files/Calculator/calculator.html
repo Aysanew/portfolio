@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Page Design CSS -->
+  <link rel="stylesheet" href="calculator.css">
+  <title></title>
+</head>
+
+<body>
+  <div class="body-wrap">
+    <div class="calculator">
+
+      <div class="row row1" id="topRow">
+        <div class="col-sm-12 output" id="outNum">
+
+        </div>
+      </div>
+      <div class="row row2">
+        <div class="col-xs-3" onclick="numInput('7')">
+          <p>7</p>
+        </div>
+        <div class="col-xs-3" onclick="numInput('8')">
+          <p>8</p>
+        </div>
+        <div class="col-xs-3" onclick="numInput('9')">
+          <p>9</p>
+        </div>
+        <div class="col-xs-3" id="no-border" onclick="mathOp('add')">
+          <p>+</p>
+        </div>
+      </div>
+      <div class="row row3">
+        <div class="col-xs-3" onclick="numInput('4')">
+          <p>4</p>
+        </div>
+        <div class="col-xs-3" onclick="numInput('5')">
+          <p>5</p>
+        </div>
+        <div class="col-xs-3" onclick="numInput('6')">
+          <p>6</p>
+        </div>
+        <div class="col-xs-3" id="no-border" onclick="mathOp('subtract')">
+          <p>-</p>
+        </div>
+      </div>
+      <div class="row row4">
+        <div class="col-xs-3" onclick="numInput('1')">
+          1
+        </div>
+        <div class="col-xs-3" onclick="numInput('2')">
+          2
+        </div>
+        <div class="col-xs-3" onclick="numInput('3')">
+          3
+        </div>
+        <div class="col-xs-3" id="no-border" onclick="mathOp('divide')">
+          /
+        </div>
+      </div>
+      <div class="row row5">
+        <div class="col-xs-3" onclick="negativeInput()">
+          (-)
+        </div>
+        <div class="col-xs-3" onclick="numInput(0)">
+          0
+        </div>
+        <div class="col-xs-3" onclick="decimalInput()">
+          .
+        </div>
+        <div class="col-xs-3" id="no-border" onclick="mathOp('multiply')">
+          x
+        </div>
+      </div>
+      <div class="row row6" id="row6">
+        <div class="col-xs-9 clear-out" onclick="outClear()">
+          CE
+        </div>
+        <div class="col-xs-3 equal" id="no-border" onclick="mathEqual()">
+          =
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    var disOutput = '0',
+      storedOutput = 0,
+      storedOper = 0,
+      calcFinished = true,
+      currentOper = true;
+    oneNum = true;
+
+    function numInput(num) {
+      if (disOutput == '0' && num == '0') {
+        return;
+      } else if (disOutput == '0' || calcFinished == true) {
+        disOutput = num;
+        calcFinished = false;
+        document.getElementById('outNum').innerHTML = disOutput;
+      } else if (storedOper != 0 && oneNum) {
+        // if (disOutput == storedOutput) {
+        disOutput = num;
+        document.getElementById('outNum').innerHTML = disOutput;
+        currentOper = true;
+        oneNum = false;
+        // }
+      } else {
+        disOutput += num;
+        document.getElementById('outNum').innerHTML = disOutput;
+      }
+    }
+
+    function negativeInput() {
+      if (disOutput == '0' || calcFinished ) {
+        return;
+      } else if (storedOper == 0) {
+        disOutput = disOutput - (disOutput * 2);
+        document.getElementById('outNum').innerHTML = disOutput;
+      } else if (storedOper != 0 && oneNum == false ) {
+        disOutput = disOutput - (disOutput * 2);
+        document.getElementById('outNum').innerHTML = disOutput;
+      }
+    }
+
+
+
+    function outClear() {
+      disOutput = '0',
+      storedOutput = 0,
+      storedOper = 0,
+      calcFinished = true,
+      currentOper = true;
+      oneNum = true;
+      document.getElementById('outNum').innerHTML = disOutput;
+    }
+
+    function mathOp(oper) {
+
+      console.log(storedOutput);
+
+
+
+      if (currentOper) {
+        if (storedOper == 0) {
+          storedOutput = eval(disOutput);
+        } else if (storedOper == 1) {
+          storedOutput += eval(disOutput);
+        } else if (storedOper == 2) {
+          storedOutput -= eval(disOutput);
+        } else if (storedOper == 3) {
+          storedOutput /= eval(disOutput);
+        } else if (storedOper == 4) {
+          storedOutput *= eval(disOutput);
+        }
+      }
+
+
+      if (oper == "add") {
+        storedOper = 1;
+        currentOper = false;
+      } else if (oper == "subtract") {
+        storedOper = 2;
+        currentOper = false;
+      } else if (oper == "divide") {
+        storedOper = 3;
+        currentOper = false;
+      } else if (oper == "multiply") {
+        storedOper = 4;
+        currentOper = false;
+      } else {
+        storedOper = 0;
+        currentOper = false;
+      }
+
+      if (storedOutput !== 0) {
+        disOutput = storedOutput
+        disOutput = Number((disOutput).toFixed(2));
+        document.getElementById('outNum').innerHTML = disOutput;
+      }
+
+      oneNum = true;
+      console.log(storedOutput);
+
+
+    }
+
+    function mathEqual() {
+      currentOper = true;
+      oneNum = true;
+      mathOp('');
+      disOutput = eval(storedOutput);
+      disOutput = Number((disOutput).toFixed(2));
+      document.getElementById('outNum').innerHTML = disOutput;
+      calcFinished = true;
+    }
+
+
+
+
+    document.getElementById('outNum').innerHTML = disOutput;
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

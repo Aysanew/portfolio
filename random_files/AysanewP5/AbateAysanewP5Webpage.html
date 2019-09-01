@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title> Rock Paper Scissors! </title>
+    <link rel="stylesheet" href="AbateAysanewP5Design.css">
+</head>
+
+<body>
+
+<table>
+    <tr>
+        <th colspan = "3"> Rock Paper Scissors </th>
+    </tr>
+    <tr>
+        <!--The onclick events for rock, paper, and scissors each call four functions.-->
+        <td onclick = "pickRock(); compHand(); recordGame(); recordRound();" > <img src = "rock.jpg" alt = "rock" title = "rock" id = "rock"> </td> 
+        <td rowspan = "3"> <img src = "leftPaperHand.jpg" alt = "leftPaperHand" title = "leftPaperHand" id = "leftHand"> </td>
+        <td rowspan = "3"> <img src = "rightRockHand.jpg" alt = "rightRockHand" title = "rightRockHand" id = "rightHand"> </td>
+    </tr>
+    <tr>
+        <td onclick = "pickPaper(); compHand(); recordGame(); recordRound();" > <img src = "paper.jpg" alt = "paper" title = "paper" id = "paper"> </td>
+    </tr>
+    <tr>
+        <td onclick = "pickScissor(); compHand(); recordGame(); recordRound();" > <img src = "scissors.jpg" alt = "scissors" title = "scissors" id = "scissors"> </td>
+    </tr>
+    <tr>
+        <!-- Span elements are put around the number values for wins, losses, and ties with corresponding ID's so their HTML values can be changed by the JavaScript functions. -->
+        <th colspan = "3"> Wins: <span id = "wins" >0</span> Losses: <span id = "losses" >0</span> Ties: <span id = "ties" >0</span> </th> 
+    </tr>
+    <tr>
+        <!-- A span is put around the round value as well so it can be changed after each round. -->
+        <th colspan = "3"> Round: <span id = "rounds" >0</span> </th>
+    </tr>
+</table>
+
+<script>
+    var pickNum, randNum, win = 0, loss = 0, tie = 0, round = 0; /*These global variables will be used within the functions*/
+    
+   /*The first three functions are called upon by clicking on their corresponding image. They cause the left hand shape to be rock, paper, or scissor depending on the selection.*/
+   /* They are also assigned pickNum values which are used in a later function to determine the match result. */
+    function pickRock() {
+        
+        leftHand.src = "leftRockHand.jpg"; /* This causes the src of the <img> above that contains "leftHand" id to change to the following file name. This method is used to manipulate the hand images for this program. */
+        pickNum = 0.25;
+    }
+    
+    function pickPaper() {
+        
+        leftHand.src = "leftPaperHand.jpg";
+        pickNum = 0.5;
+    }
+    
+    function pickScissor() {
+        
+        leftHand.src = "leftScissorHand.jpg";
+        pickNum = 0.75;
+    }
+    
+    /* This function is called on by any selection. Causes randNum to be a random decimal number between 0 and 1 and the right "computer" hand will be selected based on which condition the randNum follows. */
+    function compHand() {
+        
+        randNum = Math.random();
+        
+        if (randNum <= 0.3333) {
+            
+            rightHand.src = "rightRockHand.jpg";
+        }
+        
+        else if (randNum > 0.3333 && randNum < 0.6666) {
+            
+            rightHand.src = "rightPaperHand.jpg";
+        }
+        
+        else {
+            
+            rightHand.src = "rightScissorHand.jpg";
+        }
+    }
+    
+    /* Alot to explain indvidually, but the condition statements list out the different pickNum and randNum values combinations that correspond to either a win, loss, or tie. */
+    /* The first two if conditions list out three different possible combinations of pickNum and randNum values for ties and wins. Every other combination is thus a loss. */
+    function recordGame() {
+
+        if (((pickNum <= 0.3333 && randNum <= 0.3333)) || ((pickNum > 0.3333 && pickNum < 0.6666) && (randNum > 0.3333 && randNum < 0.6666)) || (pickNum >= 0.6666 && randNum >= 0.6666)) {
+            
+            tie++; /* Positive counter used to add 1 to the tie value. It will save the value because it is a global variable and not stuck within the scope of the function. Used for win, loss, and round values as well. */
+            ties.innerHTML = tie;
+        }
+        
+        else if (((pickNum <= 0.3333 && randNum >= 0.6666)) || ((pickNum >= 0.6666) && (randNum > 0.3333 && randNum < 0.6666)) || (pickNum > 0.3333 && pickNum < 0.6666) && (randNum <= 0.3333)) {
+            
+            win++;
+            wins.innerHTML = win;  
+        }
+        
+        else  {
+            
+            loss++;
+            losses.innerHTML = loss;
+        }
+    }
+    
+    /* Records and changes the round number value in the HTML after every selection. */
+    function recordRound() {
+        
+        round++;
+        rounds.innerHTML = round;
+    }
+ </script>
+
+
+</body>
+</html>

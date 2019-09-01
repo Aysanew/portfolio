@@ -1,0 +1,28 @@
+body {
+    background-color: Aquamarine;
+}
+
+
+table {
+    background-color: White;
+    border-style: solid;
+    border-collapse: collapse; /*Used border collapse to merge all adjacent borders into one*/
+    margin: 60px auto; /* The first value determine the margin distance from the top of the page, and the second value "auto" made the table have equal left and right margins. */
+    
+    
+}
+
+th {
+    font-size: 33px;
+    padding: 20px;
+    border-style: solid;
+    border-color: black;
+    background-color: darkorange; /* Only the title and stats will have orange background colors, while the image elements keep a white background to match the backgrounds present in the image files. */
+    
+}
+
+td {
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
+}
