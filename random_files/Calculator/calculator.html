@@ -95,38 +95,50 @@
       storedOper = 0,
       calcFinished = true,
       currentOper = true;
-    oneNum = true;
+      oneNum = true;
 
     function numInput(num) {
       if (disOutput == '0' && num == '0') {
         return;
-      } else if (disOutput == '0' || calcFinished == true) {
+      } else if (disOutput === '0' || calcFinished == true) {
         disOutput = num;
         calcFinished = false;
         document.getElementById('outNum').innerHTML = disOutput;
       } else if (storedOper != 0 && oneNum) {
-        // if (disOutput == storedOutput) {
+        if (disOutput == storedOutput) {
         disOutput = num;
         document.getElementById('outNum').innerHTML = disOutput;
         currentOper = true;
         oneNum = false;
-        // }
-      } else {
+        }
+      } else if (disOutput === "-0") {
+        disOutput = num - (num * 2);
+        document.getElementById('outNum').innerHTML = disOutput;
+      } 
+      else {
         disOutput += num;
         document.getElementById('outNum').innerHTML = disOutput;
       }
     }
 
     function negativeInput() {
-      if (disOutput == '0' || calcFinished ) {
-        return;
+      if (disOutput == '0') {
+        disOutput = '-0';
+        calcFinished = false;
+        document.getElementById('outNum').innerHTML = disOutput;
       } else if (storedOper == 0) {
         disOutput = disOutput - (disOutput * 2);
         document.getElementById('outNum').innerHTML = disOutput;
-      } else if (storedOper != 0 && oneNum == false ) {
-        disOutput = disOutput - (disOutput * 2);
+      } else if (storedOper != 0) {
+        if (calcFinished) { 
+          disOutput = disOutput - (disOutput * 2);
+          document.getElementById('outNum').innerHTML = disOutput;
+        }
+        else {
+        disOutput = "-0";
         document.getElementById('outNum').innerHTML = disOutput;
-      }
+        }
+      } 
     }
 
 
@@ -186,6 +198,7 @@
       }
 
       oneNum = true;
+      calcFinished = false;
       console.log(storedOutput);
 
 

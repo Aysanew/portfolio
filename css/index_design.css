@@ -18,7 +18,7 @@ h1 {
 
 address {
   font-size: 12px;
-  width: 100%
+  width: 100%;
   margin: auto 0;
   display: block;
 }
@@ -53,26 +53,26 @@ footer {
 }
 
 #Title {
-  height: 25%;
+  height: 10%;
   width: 100%;
   padding: 35px;
 }
 
 #Projects {
-  height: 40%;
+  height: 45%;
   width: 100%;
   padding: 35px 10px;
 }
 
 #Resume {
-  height: 35%;
+  height: 45%;
   width: 100%;
   padding: 35px 0px;
   overflow: auto;
 }
 
 #footer-content {
-  width: 100%
+  width: 100%;
   height: auto;
   margin: 0 auto;
   padding: 10px 20px;
@@ -166,6 +166,7 @@ footer {
   width: 100%;
   margin: 0 auto;
 }
+
 .pros {
   /* display: grid; */
   height: 25%;
@@ -221,16 +222,6 @@ footer {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-
-
-
-
-
-
-.pro2 {
-  height: 100%;
-}
-
 
 
 
