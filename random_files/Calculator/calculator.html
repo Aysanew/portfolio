@@ -95,6 +95,8 @@
       storedOper = 0,
       calcFinished = true,
       currentOper = true;
+      currentApplier = '';
+      reOper = '';
       oneNum = true;
 
     function numInput(num) {
@@ -149,7 +151,9 @@
       storedOper = 0,
       calcFinished = true,
       currentOper = true;
+      currentApplier = 0;
       oneNum = true;
+      reOper = '';
       document.getElementById('outNum').innerHTML = disOutput;
     }
 
@@ -171,24 +175,35 @@
         } else if (storedOper == 4) {
           storedOutput *= eval(disOutput);
         }
+      } else if (currentOper == false) {
+        if (storedOper == 0) {
+          storedOutput = eval(disOutput);
+        } else if (storedOper == 1) {
+          storedOutput += eval(currentApplier);
+        } else if (storedOper == 2) {
+          storedOutput -= eval(currentApplier);
+        } else if (storedOper == 3) {
+          storedOutput /= eval(currentApplier);
+        } else if (storedOper == 4) {
+          storedOutput *= eval(currentApplier);
+        }
       }
 
 
       if (oper == "add") {
         storedOper = 1;
-        currentOper = false;
+        reOper = oper;
       } else if (oper == "subtract") {
         storedOper = 2;
-        currentOper = false;
+        reOper = oper;
       } else if (oper == "divide") {
         storedOper = 3;
-        currentOper = false;
+        reOper = oper;
       } else if (oper == "multiply") {
         storedOper = 4;
-        currentOper = false;
+        reOper = oper;
       } else {
         storedOper = 0;
-        currentOper = false;
       }
 
       if (storedOutput !== 0) {
@@ -199,19 +214,29 @@
 
       oneNum = true;
       calcFinished = false;
+      currentOper = false;
       console.log(storedOutput);
+      
 
 
     }
 
     function mathEqual() {
-      currentOper = true;
-      oneNum = true;
-      mathOp('');
-      disOutput = eval(storedOutput);
-      disOutput = Number((disOutput).toFixed(2));
-      document.getElementById('outNum').innerHTML = disOutput;
-      calcFinished = true;
+
+      if (calcFinished) {
+        mathOp(reOper);
+        oneNum = true;
+        currentOper = false;
+        mathOp('');
+        calcFinished = true;
+      } else {
+        currentApplier = disOutput;
+        currentOper = true;
+        oneNum = true;
+        mathOp('');
+        calcFinished = true;
+      }
+    
     }
 
 
